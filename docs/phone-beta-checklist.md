@@ -91,4 +91,4 @@ Suggested approach:
 - Netlify deploy previews from the same branch.
 
 When a staging URL exists, record it here:
-- Staging URL: ______________________________
+- Staging URL: https://coinbuddybeta.netlify.app/
