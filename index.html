@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CoinBuddy is a simple local-first coin collection companion for inventory, photos, value ranges, archive records, and learning."
+    />
+    <meta name="theme-color" content="#17324d" />
+    <title>CoinBuddy</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./src/assets/coinbuddy-medallion.png" />
+    <link rel="stylesheet" href="./src/styles/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#app">Skip to content</a>
+    <header class="site-header">
+      <div class="brand-lockup">
+        <img src="./src/assets/coinbuddy-medallion.png" alt="" class="brand-mark" />
+        <div>
+          <p class="eyebrow">Your trusted coin collection companion.</p>
+          <h1>CoinBuddy</h1>
+        </div>
+      </div>
+      <nav class="primary-nav" aria-label="Primary navigation" id="primary-nav"></nav>
+    </header>
+    <main id="app" tabindex="-1"></main>
+    <div id="toast-region" class="toast-region" aria-live="polite" aria-atomic="true"></div>
+    <script type="module" src="./src/app/main.js"></script>
+  </body>
+</html>

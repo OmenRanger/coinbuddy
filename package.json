@@ -1,0 +1,24 @@
+{
+  "name": "coinbuddy",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A warm, local-first coin collection companion built for simple inventory, archive records, value ranges, education, and reports.",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs dist",
+    "lint": "node scripts/lint.mjs",
+    "test": "node --test src/tests/*.test.mjs",
+    "test:browser": "node scripts/browser-test.mjs",
+    "build": "node scripts/build.mjs"
+  },
+  "keywords": [
+    "coins",
+    "collection",
+    "pwa",
+    "archive",
+    "local-first"
+  ],
+  "author": "",
+  "license": "UNLICENSED"
+}

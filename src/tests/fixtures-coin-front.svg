@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" role="img" aria-label="Test coin front">
+  <rect width="240" height="240" fill="#f7edd8"/>
+  <circle cx="120" cy="120" r="86" fill="#c49a4a" stroke="#6f4f25" stroke-width="8"/>
+  <circle cx="120" cy="120" r="62" fill="none" stroke="#fff2bf" stroke-width="4"/>
+  <text x="120" y="112" text-anchor="middle" font-family="serif" font-size="36" fill="#17324d">1c</text>
+  <text x="120" y="148" text-anchor="middle" font-family="serif" font-size="22" fill="#17324d">1909</text>
+</svg>

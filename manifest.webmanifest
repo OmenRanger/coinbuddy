@@ -1,0 +1,16 @@
+{
+  "name": "CoinBuddy",
+  "short_name": "CoinBuddy",
+  "description": "A simple coin collection companion for inventory, photos, value ranges, archive records, and learning.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f7edd8",
+  "theme_color": "#17324d",
+  "icons": [
+    {
+      "src": "./src/assets/coinbuddy-medallion.png",
+      "sizes": "1024x1024",
+      "type": "image/png"
+    }
+  ]
+}
