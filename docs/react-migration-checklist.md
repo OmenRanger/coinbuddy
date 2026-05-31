@@ -21,7 +21,7 @@ Feature | Static MVP status | React/Vite status | Files to migrate/reuse | Test 
 Home dashboard | Implemented | Implemented | `src/pages/HomePage.tsx` | `src/App.test.tsx` | Keep 5 primary actions obvious.
 Manual coin entry | Implemented | Implemented | Reuse form patterns | Flow + edit/delete tests | React uses IndexedDB; static uses localStorage.
 Scanner / image upload | Implemented | Not yet | Reuse logic/UX from `src/app/main.js` | TBD | Must support obverse + reverse capture/upload with preview.
-Collection search/sort/filter | Implemented | Not yet | Reuse `src/lib/coinUtils.js` logic | TBD | React currently lists only; needs search + filters.
+Collection search/sort/filter | Implemented | Migrated ✅ | Reuse `src/lib/coinUtils.js` logic (ported to `src/features/collection/collectionQuery.ts`) | `src/pages/CollectionPage.react-migration.test.tsx` | Search + sort + filters + reset + empty state implemented.
 Coin detail edit/delete | Implemented | Implemented (Phase 2 complete) | React pages | `src/App.edit-delete.test.tsx` | Confirmation required for delete.
 Comparable sales | Implemented | Not yet | Reuse `src/lib/valuation.js` patterns + UI | TBD | Needs add/edit comparables per coin.
 Value estimator | Implemented | Not yet | `src/lib/valuation.js` | TBD | Must show low/mid/high + confidence + notes.
