@@ -36,35 +36,39 @@ No dependencies are required for the MVP. Use Node.js 20 or newer.
 node --version
 ```
 
-If your machine has npm, you can use `npm run ...`. In this Codex environment, npm was not available, so verification used Node directly.
+If your machine has npm, the matching `npm run ...` scripts are available. The direct Node commands below are the canonical MVP commands and do not require a package-manager install.
 
 ## Run Locally
 
 ```bash
-node --run dev
+node scripts/serve.mjs
 ```
 
 Then open:
 
 ```text
-http://localhost:4173
+http://127.0.0.1:4173
 ```
 
 ## Test
 
 ```bash
-node --run lint
-node --run test
-node --run test:browser
+node scripts/lint.mjs
+node --test src/tests/*.test.mjs
+node scripts/browser-test.mjs
 ```
 
 ## Build
 
 ```bash
-node --run build
+node scripts/build.mjs
 ```
 
 The static site is copied to `dist/`.
+
+## React/Vite Scaffold Note
+
+The branch currently includes an early React/Vite scaffold for a possible future migration. The active, verified MVP remains the dependency-light static PWA loaded by `index.html` and `src/app/main.js`.
 
 ## Data And Storage
 
@@ -73,6 +77,13 @@ CoinBuddy stores data in the browser's `localStorage` for the MVP. Coin photos a
 ## Roadmap
 
 See `ROADMAP.md` for phased work. The next major steps are cloud sync, real camera capture improvements, permitted market data integrations, report PDFs, and optional professional appraisal workflow support.
+
+Next recommended items:
+
+- Let Hermes complete the final product/docs/UX review.
+- Decide whether to launch the static PWA first or migrate the active app into the React/Vite scaffold.
+- Add PDF reports after JSON/CSV exports are accepted.
+- Add safe cloud sync only after Supabase security boundaries are reviewed.
 
 ## Known Limitations
 

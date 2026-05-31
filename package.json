@@ -1,14 +1,29 @@
 {
   "name": "coinbuddy",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "A warm, local-first coin collection companion built for simple inventory, archive records, value ranges, education, and reports.",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "test": "vitest --config vitest.config.ts run"
+    "dev": "node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs dist",
+    "lint": "node scripts/lint.mjs",
+    "test": "node --test src/tests/*.test.mjs",
+    "test:browser": "node scripts/browser-test.mjs",
+    "build": "node scripts/build.mjs",
+    "react:dev": "vite",
+    "react:build": "tsc -b && vite build",
+    "react:test": "vitest --config vitest.config.ts run"
   },
+  "keywords": [
+    "coins",
+    "collection",
+    "pwa",
+    "archive",
+    "local-first"
+  ],
+  "author": "",
+  "license": "UNLICENSED",
   "dependencies": {
     "@vitejs/plugin-react": "^5.0.0",
     "idb": "^8.0.3",
