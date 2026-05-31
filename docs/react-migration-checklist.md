@@ -41,4 +41,15 @@ Vault/context docs | Implemented | Implemented | `vault/*`, `docs/*` | N/A | Kee
 
 ## Environment note: browser workflow tests
 `scripts/browser-test.mjs` expects Playwright/Chromium.
-On this Ubuntu 26.04 WSL environment, Playwrights Chromium install is not supported, so browser-test may be skipped with a documented limitation.
+On this Ubuntu 26.04 WSL environment, Playwright's Chromium install is not supported, so browser-test may be skipped with a documented limitation.
+
+## Phase 4 scanner QA closure (Codex risk checklist)
+- Object URLs: not used for persistence (no `URL.createObjectURL` usage found).
+- Persisted images: FileReader data URLs only (`readFileAsDataUrl`), stored in IndexedDB fields `obverseImageUrl` / `reverseImageUrl`.
+- IndexedDB round-trip: covered by React scanner test (save then detail shows images).
+- Scanner default: scanner-created coins default `needsReview: true`.
+- Missing-photo filter: uses `obverseImageUrl`/`reverseImageUrl` presence (still works for partial/no-photo coins).
+- Detail page: renders photos when present; placeholders for missing sides.
+- Edit flow: preserves existing images (edit page doesn't change image fields; save spreads existing coin).
+- Empty string vs undefined: scanner normalizes to `undefined` when missing; logic checks truthiness.
+- Limitation: large photo (data URL) exports can be big and browser quota may be hit (IndexedDB still has limits). Documented as MVP limitation.

@@ -14,7 +14,7 @@ export function ScanCoinPage() {
 
   const [obverse, setObverse] = useState<string | null>(null);
   const [reverse, setReverse] = useState<string | null>(null);
-  const [state, setState] = useState<CoinFormState>(() => coinToFormState(null));
+  const [state, setState] = useState<CoinFormState>(() => ({ ...coinToFormState(null), needsReview: true }));
   const [saving, setSaving] = useState(false);
 
   async function onSubmit(e: React.FormEvent) {

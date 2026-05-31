@@ -37,7 +37,7 @@ describe('ScanCoinPage (React migration)', () => {
     expect(screen.getByRole('heading', { name: /scan or add coin photos/i })).toBeInTheDocument();
   });
 
-  it('allows attaching front/back images, previews appear, and saving persists images', async () => {
+  it('allows attaching front/back images, previews appear, and saving persists images (needs review defaults on)', async () => {
     const user = userEvent.setup();
     renderFlow();
 
@@ -67,6 +67,9 @@ describe('ScanCoinPage (React migration)', () => {
 
     expect(screen.getByRole('img', { name: /front of coin/i })).toBeInTheDocument();
     expect(screen.getByRole('img', { name: /back of coin/i })).toBeInTheDocument();
+
+    // scanner defaults "Needs review" to on
+    expect(screen.getByText(/needs review/i)).toBeInTheDocument();
   });
 
   it('can remove an image before saving', async () => {
