@@ -1,0 +1,12 @@
+# CoinBuddy phone beta / family test (NOT final release)
+# Netlify configuration for staging previews.
+
+[build]
+  command = "npm ci && npm run react:build"
+  publish = "dist"
+
+# SPA routing (React Router)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
