@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@media print {
+  header,
+  nav,
+  .no-print {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  .printable-report {
+    display: block !important;
+  }
+}
+
 :root {
   --color-paper: 247 240 224;
   --color-card: 255 252 245;

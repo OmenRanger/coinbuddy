@@ -25,8 +25,8 @@ Collection search/sort/filter | Implemented | Migrated ✅ | Reuse `src/lib/coin
 Coin detail edit/delete | Implemented | Implemented (Phase 2 complete) | React pages | `src/App.edit-delete.test.tsx` | Confirmation required for delete.
 Comparable sales | Implemented | Not yet | Reuse `src/lib/valuation.js` patterns + UI | TBD | Needs add/edit comparables per coin.
 Value estimator | Implemented | Not yet | `src/lib/valuation.js` | TBD | Must show low/mid/high + confidence + notes.
-Archive JSON/CSV export | Implemented | Not yet | `src/lib/exporters.js` | TBD | Export must include metadata; CSV for spreadsheet.
-Printable report | Implemented | Not yet | UI from static MVP | TBD | Printable layout view.
+Archive JSON/CSV export | Implemented | Migrated ✅ | `src/features/archive/exporters.ts`, `src/pages/ArchivePage.tsx` | `src/pages/ArchivePage.react-migration.test.tsx` | JSON includes schema + summary; CSV omits image data URLs.
+Printable report | Implemented | Migrated ✅ | `src/pages/ArchivePage.tsx` + print CSS in `src/styles.css` | `src/pages/ArchivePage.react-migration.test.tsx` | Uses `window.print()`; includes thumbnails/placeholders.
 Learn | Implemented | Not yet (page exists) | `src/data/articles.js` | TBD | Migrate static content into React routes.
 Auctions | Implemented | Not yet (page exists) | `src/data/auctionSources.js` | TBD | Saved links + add link.
 Settings | Implemented | Not yet (page exists) | storage status/export/import UI patterns | TBD | Also explain local storage + backups.
