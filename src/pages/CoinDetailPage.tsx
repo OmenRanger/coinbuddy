@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import type { Coin } from '../lib/types';
-import { deleteCoin, getCoin } from '../lib/db';
+import type { Coin, ValueSource } from '../lib/types';
+import { deleteCoin, getCoin, upsertCoin } from '../lib/db';
 import { Card } from '../ui/Card';
 import { useToast } from '../ui/Toast';
+import { ComparableSalesEditor } from '../features/valuation/ComparableSalesEditor';
+import { ValueEstimateCard } from '../features/valuation/ValueEstimateCard';
+import { computeEstimate } from '../features/valuation/estimate';
 
 export function CoinDetailPage() {
   const { coinId } = useParams();
@@ -57,6 +60,25 @@ export function CoinDetailPage() {
         </div>
       </Card>
     );
+  }
+
+  async function saveValueSources(nextSources: ValueSource[]) {
+    const current = coin;
+    if (!current) return;
+    const estimate = computeEstimate(nextSources);
+    const next: Coin = {
+      ...current,
+      id: current.id,
+      valueSources: nextSources,
+      estimatedValueLow: estimate.low,
+      estimatedValueMid: estimate.mid,
+      estimatedValueHigh: estimate.high,
+      valueConfidence: estimate.confidence,
+      updatedAt: new Date().toISOString(),
+    };
+    await upsertCoin(next);
+    setCoin(next);
+    toast('Sale examples saved.');
   }
 
   return (
@@ -128,6 +150,30 @@ export function CoinDetailPage() {
           <Row label="Storage" value={coin.storageLocation} />
           <Row label="Notes" value={coin.notes} />
         </dl>
+      </Card>
+
+      <Card>
+        <h2 className="font-serif text-2xl font-bold">Value estimate</h2>
+        <div className="mt-4 grid gap-4">
+          <ValueEstimateCard
+            valueSources={coin.valueSources ?? []}
+            estimatedValueLow={coin.estimatedValueLow}
+            estimatedValueMid={coin.estimatedValueMid}
+            estimatedValueHigh={coin.estimatedValueHigh}
+            valueConfidence={coin.valueConfidence}
+          />
+          <ComparableSalesEditor
+            valueSources={coin.valueSources ?? []}
+            onChange={(next) => {
+              void saveValueSources(next);
+            }}
+          />
+          <p className="text-sm text-ledger-muted">
+            Disclaimer: CoinBuddy value ranges are for personal documentation and research support only. They are not official appraisals,
+            professional grading results, or guarantees of sale price. For high-value coins, consult a qualified appraiser, grading service,
+            or insurance professional.
+          </p>
+        </div>
       </Card>
 
       <Card>

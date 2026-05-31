@@ -137,7 +137,13 @@ export function ArchivePage() {
                         {coin.storageLocation ? (
                           <p className="mt-1 text-sm text-ledger-muted">Storage: {coin.storageLocation}</p>
                         ) : null}
-                      </div>
+
+                        {typeof coin.estimatedValueLow === 'number' || typeof coin.estimatedValueMid === 'number' || typeof coin.estimatedValueHigh === 'number' ? (
+                          <p className="mt-1 text-sm text-ledger-muted">
+                            Estimated range: {formatMoney(coin.estimatedValueLow)} / {formatMoney(coin.estimatedValueMid)} / {formatMoney(coin.estimatedValueHigh)}
+                          </p>
+                        ) : null}
+                        </div>
                       {coin.needsReview ? (
                         <span className="rounded-full bg-ledger-oxblood/10 px-3 py-1 text-xs font-semibold text-ledger-oxblood">
                           Needs review

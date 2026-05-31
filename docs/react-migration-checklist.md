@@ -23,8 +23,8 @@ Manual coin entry | Implemented | Implemented | Reuse form patterns | Flow + edi
 Scanner / image upload | Implemented | Migrated ✅ | `src/features/scanner/*`, `src/pages/ScanCoinPage.tsx`, uses `CoinForm` | `src/pages/ScanCoinPage.react-migration.test.tsx` | Obverse/reverse upload with preview + remove/replace; saves to IndexedDB and displays in detail.
 Collection search/sort/filter | Implemented | Migrated ✅ | Reuse `src/lib/coinUtils.js` logic (ported to `src/features/collection/collectionQuery.ts`) | `src/pages/CollectionPage.react-migration.test.tsx` | Search + sort + filters + reset + empty state implemented.
 Coin detail edit/delete | Implemented | Implemented (Phase 2 complete) | React pages | `src/App.edit-delete.test.tsx` | Confirmation required for delete.
-Comparable sales | Implemented | Not yet | Reuse `src/lib/valuation.js` patterns + UI | TBD | Needs add/edit comparables per coin.
-Value estimator | Implemented | Not yet | `src/lib/valuation.js` | TBD | Must show low/mid/high + confidence + notes.
+Comparable sales | Implemented | Migrated ✅ | `src/features/valuation/ComparableSalesEditor.tsx` + persisted via IndexedDB coin record | `src/App.valuation.test.tsx` | Add/edit/remove examples on coin detail.
+Value estimator | Implemented | Migrated ✅ | `src/features/valuation/estimate.ts`, `ValueEstimateCard.tsx`, `ValueEstimatePage.tsx` | `src/features/valuation/estimate.test.ts`, `src/pages/ValueEstimatePage.react-migration.test.tsx` | Low/mid/high via min/median/max; confidence by count.
 Archive JSON/CSV export | Implemented | Migrated ✅ | `src/features/archive/exporters.ts`, `src/pages/ArchivePage.tsx` | `src/pages/ArchivePage.react-migration.test.tsx` | JSON includes schema + summary; CSV omits image data URLs.
 Printable report | Implemented | Migrated ✅ | `src/pages/ArchivePage.tsx` + print CSS in `src/styles.css` | `src/pages/ArchivePage.react-migration.test.tsx` | Uses `window.print()`; includes thumbnails/placeholders.
 Learn | Implemented | Not yet (page exists) | `src/data/articles.js` | TBD | Migrate static content into React routes.
