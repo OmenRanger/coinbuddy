@@ -7,6 +7,7 @@ import { HomePage } from './pages/HomePage';
 import { AddCoinPage } from './pages/AddCoinPage';
 import { CollectionPage } from './pages/CollectionPage';
 import { CoinDetailPage } from './pages/CoinDetailPage';
+import { EditCoinPage } from './pages/EditCoinPage';
 import { ToastProvider } from './ui/Toast';
 
 function renderFlow(initialEntries: string[] = ['/']) {
@@ -20,6 +21,7 @@ function renderFlow(initialEntries: string[] = ['/']) {
           { path: 'add', element: <AddCoinPage /> },
           { path: 'collection', element: <CollectionPage /> },
           { path: 'collection/:coinId', element: <CoinDetailPage /> },
+          { path: 'collection/:coinId/edit', element: <EditCoinPage /> },
         ],
       },
     ],

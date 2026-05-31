@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import type { Coin } from '../lib/types';
-import { getCoin } from '../lib/db';
+import { deleteCoin, getCoin } from '../lib/db';
 import { Card } from '../ui/Card';
+import { useToast } from '../ui/Toast';
 
 export function CoinDetailPage() {
   const { coinId } = useParams();
+  const navigate = useNavigate();
+  const { toast } = useToast();
+
   const [coin, setCoin] = useState<Coin | null>(null);
   const [loading, setLoading] = useState(true);
+  const [confirmingDelete, setConfirmingDelete] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -91,10 +96,57 @@ export function CoinDetailPage() {
       </Card>
 
       <Card>
-        <p className="text-sm text-ledger-muted">
-          Editing, photos, and value estimation come next. For now this confirms the core save-and-view flow.
+        <div className="flex flex-col gap-3 sm:flex-row">
+          <Link
+            to={`/collection/${coin.id}/edit`}
+            className="inline-flex h-11 items-center justify-center rounded-xl bg-ledger-ink px-4 text-base font-semibold text-ledger-paper"
+          >
+            Edit coin details
+          </Link>
+          <button
+            type="button"
+            className="inline-flex h-11 items-center justify-center rounded-xl border border-ledger-border bg-ledger-paper px-4 text-base font-semibold text-ledger-oxblood"
+            onClick={() => setConfirmingDelete(true)}
+          >
+            Delete coin
+          </button>
+        </div>
+        <p className="mt-4 text-sm text-ledger-muted">
+          Tip: delete removes this coin from this device. Export your archive regularly for backup.
         </p>
       </Card>
+
+      {confirmingDelete ? (
+        <div className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4" role="dialog" aria-modal="true">
+          <div className="w-full max-w-md rounded-2xl border border-ledger-border bg-ledger-card p-5 shadow-card">
+            <h2 className="font-serif text-2xl font-bold">Delete this coin?</h2>
+            <p className="mt-2 text-base text-ledger-muted">
+              This cant be undone. Your coin record and photos (if any) will be removed from this device.
+            </p>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <button
+                type="button"
+                className="inline-flex h-11 flex-1 items-center justify-center rounded-xl bg-ledger-oxblood px-4 text-base font-semibold text-ledger-paper"
+                onClick={async () => {
+                  if (!coinId) return;
+                  await deleteCoin(coinId);
+                  toast('Coin deleted.');
+                  navigate('/collection');
+                }}
+              >
+                Yes, delete
+              </button>
+              <button
+                type="button"
+                className="inline-flex h-11 flex-1 items-center justify-center rounded-xl border border-ledger-border bg-ledger-paper px-4 text-base font-semibold"
+                onClick={() => setConfirmingDelete(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
