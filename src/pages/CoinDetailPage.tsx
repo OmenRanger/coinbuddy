@@ -82,6 +82,41 @@ export function CoinDetailPage() {
         </div>
       </Card>
 
+      {(coin.obverseImageUrl || coin.reverseImageUrl) ? (
+        <Card>
+          <h2 className="font-serif text-2xl font-bold">Photos</h2>
+          <div className="mt-4 grid gap-4 md:grid-cols-2">
+            {coin.obverseImageUrl ? (
+              <div className="grid gap-2">
+                <p className="text-sm font-semibold">Front of coin</p>
+                <div className="overflow-hidden rounded-xl border border-ledger-border bg-ledger-paper">
+                  <img src={coin.obverseImageUrl} alt="Front of coin" className="h-56 w-full object-contain bg-white" />
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-dashed border-ledger-border bg-ledger-paper p-4">
+                <p className="text-sm font-semibold">Front of coin</p>
+                <p className="mt-1 text-sm text-ledger-muted">No photo yet.</p>
+              </div>
+            )}
+
+            {coin.reverseImageUrl ? (
+              <div className="grid gap-2">
+                <p className="text-sm font-semibold">Back of coin</p>
+                <div className="overflow-hidden rounded-xl border border-ledger-border bg-ledger-paper">
+                  <img src={coin.reverseImageUrl} alt="Back of coin" className="h-56 w-full object-contain bg-white" />
+                </div>
+              </div>
+            ) : (
+              <div className="rounded-xl border border-dashed border-ledger-border bg-ledger-paper p-4">
+                <p className="text-sm font-semibold">Back of coin</p>
+                <p className="mt-1 text-sm text-ledger-muted">No photo yet.</p>
+              </div>
+            )}
+          </div>
+        </Card>
+      ) : null}
+
       <Card>
         <h2 className="font-serif text-2xl font-bold">Details</h2>
         <dl className="mt-4 grid gap-3 text-base">
